@@ -1,0 +1,6 @@
+
+const Blog = () => {
+
+}
+
+export { Blog };

@@ -1,0 +1,52 @@
+import logo from './logo.svg';
+import './App.css';
+import Nav from './views/Nav';
+import { useState } from 'react';
+import Todo from './views/Todo';
+
+
+const App = () => {
+  //state hook
+  let [name, setName] = useState('Thuc');
+  const [age, setAge] = useState('');
+  const [todos, setTodos] = useState([
+    { id: '1', name: 'Lan' },
+    { id: '2', name: 'CC' },
+    { id: '2', name: 'game' }
+  ])
+
+  const handleClickMe = () => {
+    if (!age) {
+      alert('Please enter a valid age');
+      return
+    }
+    let newTodo = { id: 'abc', name: age };
+    setTodos([...todos, newTodo])
+
+    setAge('');
+  }
+  const handleAge = (e) => {
+    setAge(e.target.value);
+  }
+  //re-render
+  return (
+    <div className="App">
+      <Nav />
+
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Hello {name}
+        </p>
+        <Todo
+          todo={todos}
+        />
+        <input type='text' value={age} onChange={(e) => handleAge(e)} />
+        <button onClick={() => handleClickMe()} type='button'>Click me!</button>
+
+      </header>
+    </div>
+  );
+}
+
+export default App;
